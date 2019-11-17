@@ -6,7 +6,7 @@ require 'ookkee/model/entry'
 require 'ookkee/builder'
 require 'ookkee/builder_proxy'
 require 'ookkee/factory'
-require 'ookkee/stack'
+# require 'ookkee/stack'
 require 'ookkee/repos/entry_repo'
 
 module Ookkee

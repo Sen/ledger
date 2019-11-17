@@ -15,48 +15,6 @@ class Ookkee::BuilderTest < ActiveSupport::TestCase
     assert_equal Ookkee::Builder.new.class.name, 'Ookkee::Builder'
   end
 
-  # account = Ookkee::Account.new
-  # account.name = 'cash'
-  # account.sheet_name = 'assets'
-  # account.save!
-
-  # Ookkee::Builder.build do
-  #   title 'abcd'
-  #   transaction_number 'dfdfdf'
-  #   credit account do
-  #     amount 100
-  #     trackable order
-  #     user current_user
-  #   end
-  #   debit account do
-  #     amount 100
-  #     trackable order
-  #     user current_user
-  #   end
-  # end
-
-  # test "credit method" do
-  #   block = Proc.new {
-  #     title 'abcd'
-  #     transaction_number 'dfdfdf'
-  #     credit @account do
-  #       amount 100
-  #       trackable @order
-  #       user @user
-  #     end
-  #     debit @account do
-  #       amount 100
-  #       trackable @order
-  #       user @user
-  #     end
-  #   }
-  #   builder = Ookkee::Builder.new
-  #   builder.instance_eval(&block)
-
-  #   # puts builder.registry.inspect
-  #   # puts builder.inspect
-  # end
-
   test 'build' do
     account = Ookkee::Account.new
     account.name = 'cash'
