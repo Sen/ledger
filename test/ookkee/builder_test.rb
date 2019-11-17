@@ -42,14 +42,14 @@ class Ookkee::BuilderTest < ActiveSupport::TestCase
     assert_equal sheet.transaction_number, 'dfdfdf'
 
     credit = sheet.entries.where(entry_type: 'credit').first
-    assert_equal credit.amount_cents, 10000
+    assert_equal credit.amount, 100
     assert_equal credit.trackable_id, @order.id
     assert_equal credit.trackable_type, 'Order'
     assert_equal credit.user_id, @user.id
     assert_equal credit.user_type, 'User'
 
     debit = sheet.entries.where(entry_type: 'debit').first
-    assert_equal debit.amount_cents, 20000
+    assert_equal debit.amount, 200
     assert_equal debit.trackable_id, @order.id
     assert_equal debit.trackable_type, 'Order'
     assert_equal debit.user_id, @user.id

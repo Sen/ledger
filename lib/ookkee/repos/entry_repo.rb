@@ -9,7 +9,7 @@ module Ookkee
       entry.user         = factory.attributes[:user]
       entry.sheet_name   = factory.attributes[:sheet_name]
       entry.entry_type   = factory.attributes[:entry_type]
-      entry.amount_cents = BigDecimal((factory.attributes[:amount] || 0).to_s) * 100
+      entry.amount       = BigDecimal(factory.attributes[:amount] || 0)
 
       entry
     end

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_041450) do
     t.string "sheet_name"
     t.string "account_id"
     t.string "entry_type"
-    t.integer "amount_cents", default: 0
+    t.decimal "amount", precision: 30, scale: 10
     t.string "trackable_type"
     t.integer "trackable_id"
     t.string "user_type"

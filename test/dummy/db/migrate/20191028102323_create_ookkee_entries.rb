@@ -5,7 +5,7 @@ class CreateOokkeeEntries < ActiveRecord::Migration[6.0]
       t.string  :sheet_name # assets, liability, etc
       t.string  :account_id # cash, bank payable
       t.string  :entry_type # credit/debit
-      t.integer :amount_cents, default: 0
+      t.decimal :amount, scale: 10, precision: 30
       t.string  :trackable_type
       t.integer :trackable_id
 
