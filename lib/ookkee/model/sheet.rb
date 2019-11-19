@@ -3,9 +3,9 @@ module Ookkee
     self.table_name = "ookkee_sheets"
 
     has_many :entries, class_name: 'Ookkee::Entry', foreign_key: :sheet_id
+    belongs_to :user, polymorphic: true
 
     validates :title, presence: true
-    validates :transaction_number, uniqueness: { allow_blank: true, case_sensitive: false }
     validate :credit_and_debit_must_be_exists
     validate :ledger_equalities
 

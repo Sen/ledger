@@ -29,15 +29,14 @@ class Ookkee::BuilderTest < ActiveSupport::TestCase
     sheet = Ookkee::Builder.build do |b|
       b.title 'abcd'
       b.transaction_number 'dfdfdf'
+      b.user @user
       b.credit bank_payable_account do |cr|
         cr.amount 200
         cr.trackable @order
-        cr.user @user
       end
       b.debit balance_account do |dr|
         dr.amount 200
         dr.trackable @order
-        dr.user @user
       end
     end
 
@@ -45,13 +44,13 @@ class Ookkee::BuilderTest < ActiveSupport::TestCase
 
     assert_equal sheet.title, 'abcd'
     assert_equal sheet.transaction_number, 'dfdfdf'
+    assert_equal sheet.user_id, @user.id
+    assert_equal sheet.user_type, 'User'
 
     credit = sheet.entries.where(entry_type: 'credit').first
     assert_equal credit.amount, 200
     assert_equal credit.trackable_id, @order.id
     assert_equal credit.trackable_type, 'Order'
-    assert_equal credit.user_id, @user.id
-    assert_equal credit.user_type, 'User'
     assert_equal credit.account.name, 'bank payable'
     assert_equal credit.account.sheet_name, 'liabilities'
 
@@ -59,8 +58,6 @@ class Ookkee::BuilderTest < ActiveSupport::TestCase
     assert_equal debit.amount, 200
     assert_equal debit.trackable_id, @order.id
     assert_equal debit.trackable_type, 'Order'
-    assert_equal debit.user_id, @user.id
-    assert_equal debit.user_type, 'User'
     assert_equal debit.account.name, 'balance'
     assert_equal debit.account.sheet_name, 'assets'
   end

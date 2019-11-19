@@ -1,4 +1,6 @@
 # desc "Explaining what the task does"
-# task :ookkee do
-#   # Task goes here
-# end
+namespace :ookkee do
+  task :install do
+
+  end
+end

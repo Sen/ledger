@@ -8,7 +8,6 @@ module Ookkee
     belongs_to :sheet, class_name: 'Ookkee::Sheet', foreign_key: :sheet_id
     belongs_to :account, class_name: 'Ookkee::Account', foreign_key: :account_id
     belongs_to :trackable, polymorphic: true
-    belongs_to :user, polymorphic: true
 
     validates :entry_type, presence: true, \
       inclusion: {

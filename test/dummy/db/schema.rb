@@ -15,33 +15,34 @@ ActiveRecord::Schema.define(version: 2019_11_11_041450) do
   create_table "ookkee_accounts", force: :cascade do |t|
     t.string "name"
     t.string "sheet_name"
+    t.index ["name", "sheet_name"], name: "index_ookkee_accounts_on_name_and_sheet_name", unique: true
     t.index ["sheet_name"], name: "index_ookkee_accounts_on_sheet_name"
   end
 
   create_table "ookkee_entries", force: :cascade do |t|
     t.integer "sheet_id"
     t.string "sheet_name"
-    t.string "account_id"
+    t.integer "account_id"
     t.string "entry_type"
     t.decimal "amount", precision: 30, scale: 10
     t.string "trackable_type"
     t.integer "trackable_id"
-    t.string "user_type"
-    t.integer "user_id"
-    t.index "\"acount_id\"", name: "index_ookkee_entries_on_acount_id"
+    t.index ["account_id"], name: "index_ookkee_entries_on_account_id"
     t.index ["entry_type"], name: "index_ookkee_entries_on_entry_type"
     t.index ["sheet_id"], name: "index_ookkee_entries_on_sheet_id"
     t.index ["sheet_name"], name: "index_ookkee_entries_on_sheet_name"
     t.index ["trackable_id"], name: "index_ookkee_entries_on_trackable_id"
     t.index ["trackable_type"], name: "index_ookkee_entries_on_trackable_type"
-    t.index ["user_id"], name: "index_ookkee_entries_on_user_id"
-    t.index ["user_type"], name: "index_ookkee_entries_on_user_type"
   end
 
   create_table "ookkee_sheets", force: :cascade do |t|
     t.string "title"
     t.string "transaction_number"
-    t.index ["transaction_number"], name: "index_ookkee_sheets_on_transaction_number", unique: true
+    t.string "user_type"
+    t.integer "user_id"
+    t.index ["transaction_number"], name: "index_ookkee_sheets_on_transaction_number"
+    t.index ["user_id"], name: "index_ookkee_sheets_on_user_id"
+    t.index ["user_type"], name: "index_ookkee_sheets_on_user_type"
   end
 
   create_table "orders", force: :cascade do |t|

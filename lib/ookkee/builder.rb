@@ -22,6 +22,10 @@ module Ookkee
       @attributes[:transaction_number] = value
     end
 
+    def user(value)
+      @attributes[:user] = value
+    end
+
     def credit(account, &block)
       builder_proxy = BuilderProxy.new({builder: self})
       builder_proxy.credit(account, &block)
@@ -35,7 +39,8 @@ module Ookkee
     def build_activerecord_objects
       sheet = Sheet.new(
         title: @attributes[:title],
-        transaction_number: @attributes[:transaction_number]
+        transaction_number: @attributes[:transaction_number],
+        user: @attributes[:user]
       )
       registry.each do |element|
         entry_repo.build_from_factory(sheet, element)
