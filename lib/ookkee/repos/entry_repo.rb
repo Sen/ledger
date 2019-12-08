@@ -12,5 +12,17 @@ module Ookkee
 
       entry
     end
+
+    def account_entries_with_user(account, user)
+      Ookkee::Entry.joins(:account, :sheet)
+        .where(sheet_name: account.sheet_name)
+        .where('ookkee_accounts.name = ?', account.name)
+        .where('ookkee_sheets.user_id = ? and ookkee_sheets.user_type = ?', user.id, user.class.name)
+        .order('ookkee_entries.created_at DESC')
+    end
+
+    def calculate_account_balance(account, user)
+      account_entries_with_user(account, user).where('entry_type = ?', 'debit').sum(:amount) - entries.where('entry_type = ?', 'credit').sum(:amount)
+    end
   end
 end
