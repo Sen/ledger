@@ -2,7 +2,7 @@ module Ookkee
   class Usecase
     def self.account_balance_with_user(account, user)
       repo = EntryRepo.new
-      repo.calculate_account_balance_with_user(account, user)
+      repo.calculate_account_balance(account, user)
     end
 
     def self.account_entries(account, user)

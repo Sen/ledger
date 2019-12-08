@@ -22,7 +22,8 @@ module Ookkee
     end
 
     def calculate_account_balance(account, user)
-      account_entries_with_user(account, user).where('entry_type = ?', 'debit').sum(:amount) - entries.where('entry_type = ?', 'credit').sum(:amount)
+      entries = account_entries_with_user(account, user)
+      entries.where('entry_type = ?', 'debit').sum(:amount) - entries.where('entry_type = ?', 'credit').sum(:amount)
     end
   end
 end
