@@ -6,6 +6,8 @@ class CreateOokkeeSheets < ActiveRecord::Migration[6.0]
 
       t.string  :user_type
       t.integer :user_id
+
+      t.timestamps
     end
 
     add_index :ookkee_sheets, :transaction_number

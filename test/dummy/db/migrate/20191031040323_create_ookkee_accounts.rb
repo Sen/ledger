@@ -3,6 +3,8 @@ class CreateOokkeeAccounts < ActiveRecord::Migration[6.0]
     create_table :ookkee_accounts do |t|
       t.string :name
       t.string :sheet_name # assets, liability, etc
+
+      t.timestamps
     end
 
     add_index :ookkee_accounts, :sheet_name

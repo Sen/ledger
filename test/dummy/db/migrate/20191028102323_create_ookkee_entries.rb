@@ -8,6 +8,8 @@ class CreateOokkeeEntries < ActiveRecord::Migration[6.0]
       t.decimal :amount, scale: 10, precision: 30
       t.string  :trackable_type
       t.integer :trackable_id
+
+      t.timestamps
     end
 
     add_index :ookkee_entries, :sheet_id
