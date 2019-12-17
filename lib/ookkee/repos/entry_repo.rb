@@ -13,6 +13,10 @@ module Ookkee
       entry
     end
 
+    def sheets_with_user(user)
+      Ookkee::Sheet.where(user_id: user.id, user_type: user.class.name).order('created_at DESC')
+    end
+
     def account_entries_with_user(account, user)
       Ookkee::Entry.joins(:account, :sheet)
         .where(sheet_name: account.sheet_name)
