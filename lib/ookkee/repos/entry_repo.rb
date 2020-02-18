@@ -23,6 +23,12 @@ module Ookkee
         .where('ookkee_accounts.name = ?', account.name)
         .where('ookkee_sheets.user_id = ? and ookkee_sheets.user_type = ?', user.id, user.class.name)
         .order('ookkee_entries.created_at DESC')
+        .select("ookkee_entries.*,
+          SUM(
+            CASE WHEN ookkee_entries.entry_type = 'debit' then ookkee_entries.amount
+                 WHEN ookkee_entries.entry_type = 'credit' then ookkee_entries.amount * -1
+            END
+          ) OVER (ORDER BY ookkee_entries.id) AS balance_cache")
     end
 
     def calculate_account_balance(account, user)
